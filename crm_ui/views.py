@@ -16,7 +16,11 @@ from crm_api.services.lead_reminder_service import schedule_callback_followup
 from accounts.models import User
 from quotation.models import Quotation as DynamicQuotation
 from .forms import UserRegistrationForm, UserLoginForm
+from django.http import JsonResponse
 
+
+def health_check(request):
+    return JsonResponse({"status": "ok"}) 
 @login_required
 def dashboard(request):
     # Aggregations for cards
