@@ -30,13 +30,18 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-ebao-sd9d3!iz(%6elk71v#7g(
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.getenv(
-        'ALLOWED_HOSTS',
-        'telecrm-production-1f5b.up.railway.app,localhost,127.0.0.1'
-    ).split(',')
-    if host.strip()
+    'telecrm-production-1f5b.up.railway.app',
+    'healthcheck.railway.app',
+    'localhost',
+    '127.0.0.1',
 ]
+
+# Add any additional hosts from environment variable
+extra_hosts = os.getenv('ALLOWED_HOSTS', '').split(',')
+for host in extra_hosts:
+    host = host.strip()
+    if host and host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(host)
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()

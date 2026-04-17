@@ -19,8 +19,6 @@ from .forms import UserRegistrationForm, UserLoginForm
 from django.http import JsonResponse
 
 
-def health_check(request):
-    return JsonResponse({"status": "ok"}) 
 @login_required
 def dashboard(request):
     # Aggregations for cards
