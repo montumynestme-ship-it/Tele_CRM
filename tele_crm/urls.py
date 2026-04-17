@@ -25,8 +25,9 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # Railway Health Check
+    # Railway Health Check (both slash and no-slash versions)
     path('health/', health_check, name='health_check'),
+    path('health', health_check),
     
     # UI Routes
     path('', include('crm_ui.urls')),
