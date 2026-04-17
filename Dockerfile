@@ -21,8 +21,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project
 COPY . /app/
 
+# Collect static files at build time
+RUN python manage.py collectstatic --noinput
+
 # Expose port
 EXPOSE 8000
 
-# Command to run on container start
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Run migrations then start gunicorn
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn tele_crm.wsgi:application --bind 0.0.0.0:8000 --workers 4"]
