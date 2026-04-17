@@ -3,8 +3,8 @@ builder = "dockerfile"
 dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "python manage.py migrate --noinput && gunicorn tele_crm.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 4 --timeout 120"
-healthcheckPath = "/health"
-healthcheckTimeout = 120
+startCommand = "gunicorn tele_crm.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120"
+healthcheckPath = "/health/"
+healthcheckTimeout = 180
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 5
