@@ -29,6 +29,14 @@ RUN python manage.py collectstatic --noinput
 # Expose port
 EXPOSE 8000
 
-# Start command
+# Start command using shell form for variable expansion
 CMD python manage.py migrate --noinput && \
-    gunicorn tele_crm.wsgi:application --bind 0.0.0.0:${PORT} --workers 4 --timeout 120 --log-level info
+    gunicorn tele_crm.wsgi:application \
+    --bind 0.0.0.0:${PORT} \
+    --workers 4 \
+    --threads 2 \
+    --worker-class gthread \
+    --worker-tmp-dir /dev/shm \
+    --preload \
+    --timeout 120 \
+    --log-level info

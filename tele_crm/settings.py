@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
     'healthcheck.railway.app',
     'localhost',
     '127.0.0.1',
+    '*', # Allow all for debugging healthcheck issues
 ]
 
 # Add any additional hosts from environment variable
@@ -43,13 +44,15 @@ for host in extra_hosts:
     if host and host not in ALLOWED_HOSTS:
         ALLOWED_HOSTS.append(host)
 
+# Security & Proxy Settings
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+
 CSRF_TRUSTED_ORIGINS = [
-    origin.strip()
-    for origin in os.getenv(
-        'CSRF_TRUSTED_ORIGINS',
-        'https://telecrm-production-1f5b.up.railway.app'
-    ).split(',')
-    if origin.strip()
+    'https://telecrm-production-1f5b.up.railway.app',
+    'http://localhost',
+    'http://127.0.0.1',
 ]
 
 # Application definition
