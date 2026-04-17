@@ -33,8 +33,7 @@ ALLOWED_HOSTS = [
     'telecrm-production-1f5b.up.railway.app',
     'healthcheck.railway.app',
     'localhost',
-    '127.0.0.1',
-    '*', # Allow all for debugging healthcheck issues
+    '127.0.0.1'
 ]
 
 # Add any additional hosts from environment variable
