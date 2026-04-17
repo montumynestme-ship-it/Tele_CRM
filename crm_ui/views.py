@@ -3,6 +3,7 @@ import io
 import pandas as pd
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -667,4 +668,9 @@ def missed_leads(request):
         
     missed_leads_list = MissedLead.objects.all().order_by('-timestamp')
     return render(request, 'crm_ui/leads/missed.html', {'missed_leads': missed_leads_list})
+
+
+def health_check(request):
+    """Lightweight healthcheck endpoint — no auth required."""
+    return JsonResponse({'status': 'ok'})
 

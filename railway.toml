@@ -1,6 +1,6 @@
 [deploy]
-startCommand = "python manage.py migrate --noinput && gunicorn tele_crm.wsgi:application --bind 0.0.0.0:8000 --workers 4"
-healthcheckPath = "/login/"
-healthcheckTimeout = 60
+startCommand = "python manage.py migrate --noinput && gunicorn tele_crm.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 4"
+healthcheckPath = "/health/"
+healthcheckTimeout = 90
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
