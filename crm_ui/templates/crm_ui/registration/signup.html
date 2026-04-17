@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Tele CRM</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 480px;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .brand-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6366f1;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #6366f1;
+            border-color: #6366f1;
+            padding: 0.75rem;
+            font-weight: 600;
+            border-radius: 0.75rem;
+        }
+        .btn-primary:hover {
+            background-color: #4f46e5;
+            border-color: #4f46e5;
+        }
+        .form-control {
+            padding: 0.625rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card">
+        <div class="brand-logo">
+            <i class="fas fa-headset me-2"></i>Tele CRM
+        </div>
+        <h4 class="fw-bold mb-1 text-center">Create your account</h4>
+        <p class="text-muted small text-center mb-3">Join our professional CRM platform.</p>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %} alert-dismissible fade show small py-2" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close py-2" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <form action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            <div class="row g-2">
+                <div class="col-md-12">
+                    <label class="form-label small fw-bold mb-1">Full Name</label>
+                    <input type="text" name="full_name" class="form-control" placeholder="John Doe" required>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label small fw-bold mb-1">Username</label>
+                    <input type="text" name="username" class="form-control" placeholder="johndoe" required>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label small fw-bold mb-1">Email Address</label>
+                    <input type="email" name="email" class="form-control" placeholder="name@company.com" required>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label small fw-bold mb-1">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Create a strong password" required>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label small fw-bold mb-1">Company Name</label>
+                    <input type="text" name="company_name" class="form-control" placeholder="Your Business Ltd.">
+                </div>
+                <div class="col-md-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="terms" required>
+                        <label class="form-check-label small text-muted" for="terms">I agree to the <a href="#" class="text-primary text-decoration-none">Terms & Conditions</a></label>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <button type="submit" class="btn btn-primary w-100 mb-2 shadow-sm">Create Account</button>
+                </div>
+            </div>
+        </form>
+        
+        <div class="mt-2 text-center">
+            <p class="small text-muted mb-0">Already have an account? <a href="{% url 'login' %}" class="text-primary fw-bold text-decoration-none">Sign in</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
