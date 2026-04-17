@@ -30,6 +30,9 @@ DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 
 ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', '').split(',') if host.strip()]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://telecrm-production-1f5b.up.railway.app"
+]
 
 # Application definition
 
