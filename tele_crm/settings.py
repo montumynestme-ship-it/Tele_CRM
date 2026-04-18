@@ -58,6 +58,11 @@ CSRF_TRUSTED_ORIGINS = [
     'https://telecrm-production-1f5b.up.railway.app',
     'http://localhost',
     'http://127.0.0.1',
+    'https://*.replit.dev',
+    'https://*.replit.app',
+    'https://*.sisko.replit.dev',
+    'https://*.kirk.replit.dev',
+    'https://*.picard.replit.dev',
 ]
 
 # Application definition
