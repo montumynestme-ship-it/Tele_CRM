@@ -1,1 +1,1 @@
-web: gunicorn tele_crm.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120
+web: gunicorn tele_crm.wsgi:application --bind 0.0.0.0:${PORT} --workers 3 --timeout 120

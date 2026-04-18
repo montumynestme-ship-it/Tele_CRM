@@ -30,5 +30,5 @@ RUN DJANGO_SECRET_KEY=dummy-key-for-build python manage.py collectstatic --noinp
 # Expose the port
 EXPOSE 8000
 
-# Start server using the requested command (adjusted to actual directory case)
-CMD ["gunicorn", "tele_crm.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120"]
+# Start server using the dynamic PORT environment variable
+CMD ["sh", "-c", "gunicorn tele_crm.wsgi:application --bind 0.0.0.0:${PORT} --workers 3 --timeout 120"]
