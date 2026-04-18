@@ -29,12 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-ebao-sd9d3!iz(%6elk71v#7g(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = [
-    'telecrm-production-1f5b.up.railway.app',
-    'healthcheck.railway.app',
-    'localhost',
-    '127.0.0.1'
-]
+ALLOWED_HOSTS = ["*"]
 
 # Add any additional hosts from environment variable
 extra_hosts = os.getenv('ALLOWED_HOSTS', '').split(',')
@@ -47,6 +42,17 @@ for host in extra_hosts:
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 USE_X_FORWARDED_PORT = True
+
+# Secure Headers for Production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', 'True').lower() == 'true'
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_BROWSER_XSS_FILTER = True
 
 CSRF_TRUSTED_ORIGINS = [
     'https://telecrm-production-1f5b.up.railway.app',

@@ -97,12 +97,12 @@ def _save_sections_and_items(request, quotation):
         for row_index, description in enumerate(descriptions):
             if not description.strip():
                 continue
-            qty = Decimal(quantities[row_index] or "0")
-            unit = Decimal(unit_prices[row_index] or "0")
+            qty = Decimal(quantities[row_index] if row_index < len(quantities) else "1")
+            unit = Decimal(unit_prices[row_index] if row_index < len(unit_prices) else "0")
             QuotationItem.objects.create(
                 quotation=quotation,
                 section=section,
-                item_number=int(item_numbers[row_index] or row_index + 1),
+                item_number=int(item_numbers[row_index] if row_index < len(item_numbers) else row_index + 1),
                 description=description.strip(),
                 quantity=qty,
                 unit_price=unit,

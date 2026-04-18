@@ -4,6 +4,7 @@ FROM python:3.12-slim
 # Environment settings
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV PORT=8000
 
 # Set work directory
 WORKDIR /app
@@ -23,7 +24,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+# Setting a dummy SECRET_KEY for collection if not set in environment
+RUN DJANGO_SECRET_KEY=dummy-key-for-build python manage.py collectstatic --noinput
 
-# Start server
-CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn tele_crm.wsgi:application --bind 0.0.0.0:$PORT --workers 3 --timeout 120"]
+# Expose the port
+EXPOSE 8000
+
+# Start server using the requested command (adjusted to actual directory case)
+CMD ["gunicorn", "tele_crm.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120"]

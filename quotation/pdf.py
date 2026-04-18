@@ -17,88 +17,66 @@ PDF_TEXT_SECONDARY = colors.HexColor("#64748B")
 PDF_ACCENT = colors.HexColor("#10B981")
 
 
-DEFAULT_NOT_INCLUDED = [
-    "Electrical automation",
-    "VRV / AC systems",
-    "Home appliances",
-    "Structural construction work",
-    "Washroom closet fittings",
-    "Any item not mentioned in quotation",
-]
-
-PACKAGE_DETAILS = [
-    (
-        "Economic",
-        [
-            "Laminate finish in all areas.",
-            "Specified brand raw materials with warranty support.",
-            "Strong and durable execution as standard.",
-        ],
-    ),
-    (
-        "Semi-Luxury Interior",
-        [
-            "Duco/veneer for living area and master bedroom.",
-            "Acrylic finish in kitchen; laminate in other areas.",
-            "Imported highlight laminates with premium raw materials.",
-        ],
-    ),
-    (
-        "Full-Luxury Interior",
-        [
-            "PU-Duco, veneer, acrylic and luxury highlighted laminates.",
-            "High-end brand materials with maximum warranties.",
-            "Luxury aesthetics with top durability and finish quality.",
-        ],
-    ),
-]
-
+BRAND_LOGO_DIR = os.path.join(settings.BASE_DIR, "static", "images", "brand_logos")
 BRAND_LOGO_PATHS = [
-    r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_image-7da59e37-c9dd-4aa4-a461-03c211a1c897.png",
-    r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_image-fd12b7cc-aa54-409b-af14-9088b2e28bbb.png",
-    r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_image-156b7822-3d8e-4a68-b17b-abf73c31f5a9.png",
-    r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_image-98957b53-c1e1-4edd-816a-c489e55229e3.png",
-    r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_image-a557ae29-56eb-40c6-b068-06dccb937fbc.png",
-    r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_image-7fb20a18-b709-48f2-9682-6280cb6242b2.png",
-    r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_image-6f6e79b3-8b56-4ed2-8ad9-ad3ea18de613.png",
-    r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_image-0fbd2157-2f4b-42b6-b67b-8e0e0933e692.png",
-    r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_image-12ac2519-b9f9-4c89-90d2-ea20db2fa1c7.png",
+    os.path.join(BRAND_LOGO_DIR, "brand_7da59e37-c9dd-4aa4-a461-03c211a1c897.png"),
+    os.path.join(BRAND_LOGO_DIR, "brand_fd12b7cc-aa54-409b-af14-9088b2e28bbb.png"),
+    os.path.join(BRAND_LOGO_DIR, "brand_156b7822-3d8e-4a68-b17b-abf73c31f5a9.png"),
+    os.path.join(BRAND_LOGO_DIR, "brand_98957b53-c1e1-4edd-816a-c489e55229e3.png"),
+    os.path.join(BRAND_LOGO_DIR, "brand_a557ae29-56eb-40c6-b068-06dccb937fbc.png"),
+    os.path.join(BRAND_LOGO_DIR, "brand_7fb20a18-b709-48f2-9682-6280cb6242b2.png"),
+    os.path.join(BRAND_LOGO_DIR, "brand_6f6e79b3-8b56-4ed2-8ad9-ad3ea18de613.png"),
+    os.path.join(BRAND_LOGO_DIR, "brand_0fbd2157-2f4b-42b6-b67b-8e0e0933e692.png"),
+    os.path.join(BRAND_LOGO_DIR, "brand_12ac2519-b9f9-4c89-90d2-ea20db2fa1c7.png"),
 ]
-MAIN_COMPANY_LOGO_PATH = r"C:\Users\Admin\.cursor\projects\c-Program-Files-Odoo-19-0-20260411-server-odoo-addons-interior-design-management\assets\c__Users_Admin_AppData_Roaming_Cursor_User_workspaceStorage_db57d6c9e1f7510e8f464991894dc193_images_mynest-log-1-e1644572796296-300x168-57405ca3-585e-4c54-a0c2-8a524c54287a.png"
+MAIN_COMPANY_LOGO_PATH = os.path.join(BRAND_LOGO_DIR, "company_logo.png")
+
+STANDARD_MATERIALS = [
+    ("Paint Work", "Asian Paint - Royal"),
+    ("Plywood", "BWR and BWP (Kitchen & washroom base) - 14 years warranty"),
+    ("Laminate", "2K premium finish"),
+    ("Veneer", "3K decorative finish"),
+    ("Acrylic", "5K high gloss finish"),
+    ("Hardware - Hinges", "HIKO / Hafele / Hettich / Godrej"),
+    ("Hardware - Locks", "Godrej - 2 years warranty"),
+    ("Hardware - Channels", "Tandem / HIKO / Hettich / Hafele"),
+    ("Hardware - Knobs/Handles", "Selection range (₹150 - ₹500)"),
+    ("Fabric", "Selection range (₹300 - ₹500)"),
+    ("False Ceiling", "Gypsum - 10 years warranty"),
+    ("Lights", "Panel and COB - Philips / Syska / Astro - 2 years warranty"),
+    ("Wires", "RR Kabel / Finolex - 14 years warranty"),
+]
+
+MYNEST_INCLUSIONS = [
+    "Space management and furniture layout planning",
+    "3D Photorealistic (360°) Interior Designing",
+    "Comprehensive 2-Layer Execution management",
+    "Professional Labour Handling & site coordination",
+    "Post-work Debris Cleaning & waste removal",
+    "Basic Deep Cleaning before handover",
+    "Floor Protection cover during execution",
+    "2 years of dedicated Service Warranty",
+]
 
 
-def _money(value: Decimal) -> str:
-    return f"INR {value:,.2f}"
-
-
-def _section_table(section):
-    data = [["Description", "Qty", "Unit Price", "Total", "Remarks"]]
-    section_total = Decimal("0.00")
-    for item in section.items.all():
-        section_total += item.total_price
-        data.append(
-            [
-                item.description,
-                str(item.quantity),
-                _money(item.unit_price),
-                _money(item.total_price),
-                item.remarks or "-",
-            ]
-        )
-    data.append(["Section Total", "", "", "", _money(section_total)])
-    table = Table(data, colWidths=[3.3 * inch, 0.8 * inch, 1.1 * inch, 1.1 * inch, 1.0 * inch], repeatRows=1)
+def _items_table(items):
+    data = [["No.", "Description", "Remarks"]]
+    for idx, item in enumerate(items, start=1):
+        data.append([str(idx), item.description, item.remarks or "-"] )
+    
+    table = Table(data, colWidths=[0.6 * inch, 4.4 * inch, 2.0 * inch], repeatRows=1)
     table.setStyle(
         TableStyle(
             [
                 ("BACKGROUND", (0, 0), (-1, 0), PDF_BG_SOFT),
                 ("GRID", (0, 0), (-1, -1), 0.35, PDF_BORDER),
                 ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-                ("FONTNAME", (0, -1), (-1, -1), "Helvetica-Bold"),
-                ("ALIGN", (2, 1), (3, -1), "RIGHT"),
+                ("ALIGN", (0, 0), (-1, -1), "LEFT"),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
             ]
         )
     )
-    return table, section_total
+    return table
 
 
 def _company_or_default(company):
@@ -226,145 +204,125 @@ def generate_quotation_pdf(quotation: Quotation) -> str:
     elements.append(detail_table)
     elements.append(Spacer(1, 10))
 
-    # Room-wise quotation
-    elements.append(Paragraph("ROOM-WISE QUOTATION", section_style))
-    interior_total = Decimal("0.00")
-    civil_total = Decimal("0.00")
-
+    # 1. SECTION WISE INTERIOR ITEMS
     for section in quotation.sections.all():
-        if section.section_name.strip().lower() == "mynest includings":
-            display_name = "INCLUSIONS"
-        else:
-            display_name = section.section_name
-        if not section.items.exists():
+        items = section.items.all()
+        if not items.exists():
             continue
+            
         elements.append(Paragraph(section.section_name.upper(), section_style))
-        table, section_total = _section_table(section)
-        if section_total <= 0:
-            continue
-        elements[-1] = Paragraph(display_name.upper(), section_style)
-        elements.append(table)
-        elements.append(Spacer(1, 6))
-        if "civil" in section.section_name.lower():
-            civil_total += section_total
-        else:
-            interior_total += section_total
+        elements.append(_items_table(items))
+        elements.append(Spacer(1, 10))
+    
+    elements.append(Spacer(1, 5))
 
-    # Extra civil work model items
+    # 2. MATERIAL LIST (Fixed Standards)
+    elements.append(Paragraph("MATERIAL LIST", section_style))
+    std_data = [["Category", "Specifications / Brands"]]
+    std_data.extend([
+        ("Paint Work", "Asian Paint - Royale / Luxury Emulsion"),
+        ("Plywood", "BWR and BWP (Kitchen & washroom base) - 14 years warranty"),
+        ("Laminate", "1.0mm - 1.2mm Premium finish (2K range)"),
+        ("Veneer", "3.5mm - 4.0mm Decorative finish (3K range)"),
+        ("Acrylic", "1.5mm High gloss Anti-scratch (5K range)"),
+        ("Hardware Brands", "Hettich / Hafele / Godrej / E-Square"),
+        ("Hardware - Hinges", "Auto-close soft-touch hinges"),
+        ("Hardware - Channels", "Tandem boxes / Soft-close telescopic channels"),
+        ("Lighting", "Philips / Syska / Astro - 2 years warranty"),
+        ("Wiring", "RR Kabel / Finolex - 14 years warranty"),
+        ("False Ceiling", "Gypsum / POP design with 10 years warranty"),
+    ])
+    std_table = Table(std_data, colWidths=[2.5 * inch, 4.5 * inch])
+    std_table.setStyle(TableStyle([
+        ("GRID", (0, 0), (-1, -1), 0.3, PDF_BORDER),
+        ("BACKGROUND", (0, 0), (-1, 0), PDF_BG_SOFT),
+        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+    ]))
+    elements.append(std_table)
+    elements.append(Spacer(1, 10))
+
+    # 3. MYNEST INCLUSIONS
+    elements.append(Paragraph("MYNEST INCLUSIONS", section_style))
+    inc_data = [["No.", "Description"]]
+    for idx, inc in enumerate(MYNEST_INCLUSIONS, start=1):
+        inc_data.append([str(idx), inc])
+    inc_table = Table(inc_data, colWidths=[0.6 * inch, 6.4 * inch], repeatRows=1)
+    inc_table.setStyle(TableStyle([
+        ("GRID", (0, 0), (-1, -1), 0.3, PDF_BORDER),
+        ("BACKGROUND", (0, 0), (-1, 0), PDF_BG_SOFT),
+        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+    ]))
+    elements.append(inc_table)
+    elements.append(Spacer(1, 10))
+
+    # 4. INTERIOR PACKAGE PRICING OPTIONS
+    elements.append(Paragraph("INTERIOR PACKAGE PRICING OPTIONS", section_style))
+    base = float(quotation.base_amount)
+    semi = base * 1.27
+    full = base * 1.54
+    sel = quotation.selected_package
+    data = [
+        ["Option", "Package Details", "Amount (INR)"],
+        ["BASIC-ECO", "LAMINATED", f"{base:,.2f}"],
+        ["SEMI-LUXURY", "DUCO / VENEER / LAMINATE", f"{semi:,.2f}"],
+        ["FULL-LUXURY", "PU-DUCO / VENEER / ACRYLIC / H.LAM", f"{full:,.2f}"],
+    ]
+    table = Table(data, colWidths=[1.8 * inch, 3.4 * inch, 1.8 * inch])
+    style_list = [
+        ("GRID", (0, 0), (-1, -1), 0.5, PDF_BORDER),
+        ("BACKGROUND", (0, 0), (-1, 0), PDF_BG_SOFT),
+        ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+        ("ALIGN", (2, 0), (2, -1), "RIGHT"),
+        ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+        ("FONTSIZE", (0, 0), (-1, -1), 9),
+    ]
+    if sel == "BASIC":
+        style_list.append(("BACKGROUND", (0, 1), (-1, 1), colors.lightyellow))
+        style_list.append(("FONTNAME", (0, 1), (-1, 1), "Helvetica-Bold"))
+    elif sel == "SEMI":
+        style_list.append(("BACKGROUND", (0, 2), (-1, 2), colors.lightyellow))
+        style_list.append(("FONTNAME", (0, 2), (-1, 2), "Helvetica-Bold"))
+    elif sel == "FULL":
+        style_list.append(("BACKGROUND", (0, 3), (-1, 3), colors.lightyellow))
+        style_list.append(("FONTNAME", (0, 3), (-1, 3), "Helvetica-Bold"))
+    table.setStyle(TableStyle(style_list))
+    elements.append(table)
+    elements.append(Spacer(1, 4))
+    elements.append(Paragraph(f"* Selected Package: <b>{dict(Quotation.PACKAGE_CHOICES).get(sel)}</b>", ParagraphStyle("SmallMsg", parent=normal, fontSize=8, textColor=PDF_PRIMARY)))
+    elements.append(Spacer(1, 12))
+
+    # Civil work (Commented out as requested)
+    """
     if quotation.civil_work_items.exists():
         elements.append(Paragraph("CIVIL WORK", section_style))
-        civil_rows = [["Description", "Qty", "Unit Price", "Total", "Remarks"]]
-        for idx, item in enumerate(quotation.civil_work_items.all(), start=1):
-            civil_rows.append([item.description, "1", _money(item.price), _money(item.price), item.remarks or "-"])
-            civil_total += item.price
-        civil_table = Table(civil_rows, colWidths=[3.3 * inch, 0.8 * inch, 1.1 * inch, 1.1 * inch, 1.0 * inch], repeatRows=1)
+        civil_rows = [["Description", "Remarks"]]
+        for item in quotation.civil_work_items.all():
+            civil_rows.append([item.description, item.remarks or "-"])
+        civil_table = Table(civil_rows, colWidths=[5.0 * inch, 2.0 * inch], repeatRows=1)
         civil_table.setStyle(TableStyle([("GRID", (0, 0), (-1, -1), 0.35, PDF_BORDER), ("BACKGROUND", (0, 0), (-1, 0), PDF_BG_SOFT)]))
         elements.append(civil_table)
-        elements.append(Spacer(1, 8))
-
-    # Project summary
-    total_project = interior_total + civil_total
-    elements.append(Paragraph("PROJECT SUMMARY", section_style))
-    summary_table = Table(
-        [
-            ["Interior Work Total", _money(interior_total)],
-            ["Civil Work Total", _money(civil_total)],
-            ["GRAND TOTAL", _money(total_project)],
-        ],
-        colWidths=[4.5 * inch, 2.5 * inch],
-    )
-    summary_table.setStyle(
-        TableStyle([("GRID", (0, 0), (-1, -1), 0.5, PDF_BORDER), ("FONTNAME", (0, 2), (-1, 2), "Helvetica-Bold"), ("BACKGROUND", (0, 0), (-1, 0), PDF_BG_SOFT)])
-    )
-    summary_table.setStyle(
-        TableStyle(
-            [
-                ("FONTNAME", (0, 2), (-1, 2), "Helvetica-Bold"),
-                ("TEXTCOLOR", (0, 2), (-1, 2), PDF_ACCENT),
-                ("FONTSIZE", (0, 2), (-1, 2), 12),
-                ("BACKGROUND", (0, 2), (-1, 2), colors.HexColor("#ECFDF5")),
-            ]
-        )
-    )
-    elements.append(summary_table)
-    elements.append(Spacer(1, 8))
-
-    # Package pricing summary (dynamic based on saved base amount)
-    effective_base = quotation.base_amount if quotation.base_amount else interior_total
-    semi_amount = effective_base + (effective_base * Decimal("0.27"))
-    full_amount = effective_base + (effective_base * Decimal("0.54"))
-    selected_code = quotation.selected_package or "BASIC"
-    selected_amount = effective_base
-    selected_label = "LAMINATED (BASIC-ECO)"
-    if selected_code == "SEMI":
-        selected_amount = semi_amount
-        selected_label = "DUCO/VENEER/LAMINATE (Semi-Luxury Interior)"
-    elif selected_code == "FULL":
-        selected_amount = full_amount
-        selected_label = "PU-DUCO/VENEER/ACRYLIC/H.LAM (Full-Luxury Interior)"
-    elif quotation.package_amount:
-        selected_amount = quotation.package_amount
-
-    elements.append(Paragraph("INTERIOR PACKAGE PRICING", section_style))
-    package_table = Table(
-        [
-            ["LAMINATED (BASIC-ECO)", _money(effective_base)],
-            ["DUCO/VENEER/LAMINATE (Semi-Luxury Interior)", _money(semi_amount)],
-            ["PU-DUCO/VENEER/ACRYLIC/H.LAM (Full-Luxury Interior)", _money(full_amount)],
-            [f"Selected Package: {selected_label}", _money(selected_amount)],
-        ],
-        colWidths=[5.5 * inch, 1.5 * inch],
-    )
-    package_table.setStyle(
-        TableStyle(
-            [
-                ("GRID", (0, 0), (-1, -1), 0.35, PDF_BORDER),
-                ("BACKGROUND", (0, 0), (-1, 0), PDF_BG_SOFT),
-                ("FONTNAME", (0, 3), (-1, 3), "Helvetica-Bold"),
-            ]
-        )
-    )
-    elements.append(package_table)
-    elements.append(Spacer(1, 8))
-
-    # Package options
-    elements.append(Paragraph("IN DETAIL", section_style))
-    package_detail_rows = [[Paragraph("<b>Package</b>", normal), Paragraph("<b>Description</b>", normal)]]
-    for title, bullets in PACKAGE_DETAILS:
-        bullet_text = "<br/>".join([f"- {line}" for line in bullets])
-        package_detail_rows.append([Paragraph(f"<b>{title}</b>", normal), Paragraph(bullet_text, normal)])
-    package_details_table = Table(package_detail_rows, colWidths=[1.8 * inch, 5.2 * inch], repeatRows=1)
-    package_details_table.setStyle(
-        TableStyle(
-            [
-                ("GRID", (0, 0), (-1, -1), 0.3, PDF_BORDER),
-                ("BACKGROUND", (0, 0), (-1, 0), PDF_BG_SOFT),
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
-            ]
-        )
-    )
-    elements.append(package_details_table)
-    elements.append(Spacer(1, 8))
+        elements.append(Spacer(1, 10))
+    """
 
     # Payment terms
     elements.append(Paragraph("PAYMENT TERMS", section_style))
-    payment_rows = [["Stage", "Percentage", "Amount", "Description"]]
+    payment_rows = [["Stage", "Percentage", "Description"]]
     if quotation.payment_plans.exists():
         for p in quotation.payment_plans.all():
-            payment_rows.append([p.payment_stage, f"{p.percentage}%", _money(p.amount), p.description or "-"])
+            payment_rows.append([p.payment_stage, f"{p.percentage}%", p.description or "-"])
     else:
         payment_rows.extend(
             [
-                ["Booking Amount", "-", _money(total_project * Decimal("0.10")), "Initial booking"],
-                ["Phase 1", "65", _money(total_project * Decimal("0.65")), "Wiring, base structures, ceiling and civil work"],
-                ["Phase 2", "35", _money(total_project * Decimal("0.35")), "Shutters, paint, hardware, light fittings"],
-                ["Before Handover", "-", _money(total_project * Decimal("0.05")), "Final finishing and closure"],
+                ["Booking Amount", "10%", "Initial booking"],
+                ["Phase 1", "65%", "Wiring, base structures, ceiling and civil work"],
+                ["Phase 2", "20%", "Shutters, paint, hardware, light fittings"],
+                ["Before Handover", "5%", "Final finishing and closure"],
             ]
         )
-    payment_table = Table(payment_rows, colWidths=[1.7 * inch, 1.1 * inch, 1.5 * inch, 2.7 * inch], repeatRows=1)
+    payment_table = Table(payment_rows, colWidths=[2.0 * inch, 1.5 * inch, 3.5 * inch], repeatRows=1)
     payment_table.setStyle(TableStyle([("GRID", (0, 0), (-1, -1), 0.35, PDF_BORDER), ("BACKGROUND", (0, 0), (-1, 0), PDF_BG_SOFT)]))
     elements.append(payment_table)
-    elements.append(Spacer(1, 8))
+    elements.append(Spacer(1, 10))
 
     # Bank details
     elements.append(Paragraph("BANK DETAILS", section_style))
@@ -383,7 +341,15 @@ def generate_quotation_pdf(quotation: Quotation) -> str:
 
     # Not included
     elements.append(Paragraph("NOT INCLUDED", section_style))
-    for idx, line in enumerate(DEFAULT_NOT_INCLUDED, start=1):
+    not_included = [
+        "Electrical automation",
+        "VRV / AC systems",
+        "Home appliances",
+        "Structural construction work",
+        "Washroom closet fittings",
+        "Any item not mentioned in quotation",
+    ]
+    for idx, line in enumerate(not_included, start=1):
         elements.append(Paragraph(f"{idx}. {line}", normal))
     elements.append(Spacer(1, 10))
 

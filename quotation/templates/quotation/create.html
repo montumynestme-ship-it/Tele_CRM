@@ -11,18 +11,29 @@
 <form method="post">
     {% csrf_token %}
     <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-white"><h6 class="mb-0 fw-bold">Client Information</h6></div>
+        <div class="card-header bg-white">
+            <h6 class="mb-0 fw-bold">Client Information</h6>
+        </div>
         <div class="card-body">
             <div class="row g-3">
                 {% for field in form %}
-                    {% if field.name != 'selected_package' and field.name != 'base_amount' and field.name != 'package_amount' and field.name != 'project_area_sqft' and field.name != 'design_theme' and field.name != 'execution_timeline' and field.name != 'scope_of_work' and field.name != 'exclusions' and field.name != 'payment_terms' and field.name != 'warranty_terms' %}
-                    <div class="col-md-6">
-                        <label class="form-label small fw-bold">{{ field.label }}</label>
-                        {{ field }}
-                        {% if field.errors %}<div class="text-danger small">{{ field.errors|join:", " }}</div>{% endif %}
-                    </div>
-                    {% endif %}
+                {% if field.name != 'selected_package' and field.name != 'base_amount' and field.name !=
+                'package_amount' and field.name != 'project_area_sqft' and field.name != 'design_theme' and field.name
+                != 'execution_timeline' and field.name != 'scope_of_work' and field.name != 'exclusions' and field.name
+                != 'payment_terms' and field.name != 'warranty_terms' and field.name != 'notes' %}
+                <div class="col-md-6">
+                    <label class="form-label small fw-bold">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}<div class="text-danger small">{{ field.errors|join:", " }}</div>{% endif %}
+                </div>
+                {% endif %}
                 {% endfor %}
+                <div class="col-12 mt-3">
+                    <label class="form-label small fw-bold">Quotation Notes</label>
+                    {{ form.notes }}
+                    <div class="form-text small">Enter additional project notes, special conditions, or client-specific
+                        terms here.</div>
+                </div>
             </div>
         </div>
     </div>
@@ -31,79 +42,47 @@
         <div class="card-header bg-white d-flex justify-content-between align-items-center">
             <h6 class="mb-0 fw-bold">Room Wise Items</h6>
             <div class="d-flex gap-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary" id="addBedroomBtn"><i class="fas fa-bed me-1"></i> Add Bedroom</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="addBedroomBtn"><i
+                        class="fas fa-bed me-1"></i> Add Bedroom</button>
                 <button type="button" class="btn btn-sm btn-outline-primary" id="addSectionBtn">+ Add Section</button>
             </div>
         </div>
         <div class="card-body" id="sectionsContainer"></div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-white"><h6 class="mb-0 fw-bold">Material Specification</h6></div>
-        <div class="card-body">
-            <div class="alert alert-light border small mb-3">Select from your material list options below.</div>
-            <div class="row g-3">
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">Paint Type</label>
-                    <select name="paint_type" class="form-select form-select-sm"><option value="">Select</option><option value="Asian Paint Royale">Asian Paint Royale</option></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">Plywood Type</label>
-                    <select name="plywood_type" class="form-select form-select-sm"><option value="">Select</option><option value="BWR / BWP (Kitchen & washroom base)">BWR / BWP (Kitchen & washroom base)</option></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">Laminate</label>
-                    <select name="laminate_type" class="form-select form-select-sm"><option value="">Select</option><option value="2K">2K</option></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">Veneer</label>
-                    <select name="veneer_type" class="form-select form-select-sm"><option value="">Select</option><option value="3K">3K</option></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">Acrylic</label>
-                    <select name="acrylic_type" class="form-select form-select-sm"><option value="">Select</option><option value="5K">5K</option></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">Hardware Brands</label>
-                    <select name="hardware_brands" class="form-select form-select-sm"><option value="">Select</option><option value="HIKO/Hattich/Godrej/E-Square">HIKO/Hattich/Godrej/E-Square</option><option value="Godrej">Godrej</option></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">Lights Brand</label>
-                    <select name="light_brands" class="form-select form-select-sm"><option value="">Select</option><option value="Syska/Astro">Syska/Astro</option></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">Wires Brand</label>
-                    <select name="wire_brands" class="form-select form-select-sm"><option value="">Select</option><option value="RR/Finolex">RR/Finolex</option></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">False Ceiling</label>
-                    <select name="false_ceiling_type" class="form-select form-select-sm"><option value="">Select</option><option value="Gypsum">Gypsum</option></select>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label small fw-bold">Warranty / Notes</label>
-                    <textarea name="warranty_details" rows="2" class="form-control form-control-sm"></textarea>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="card border-0 shadow-sm mb-4">
-        <div class="card-header bg-white"><h6 class="mb-0 fw-bold">Interior Package Pricing</h6></div>
+        <div class="card-header bg-white">
+            <h6 class="mb-0 fw-bold">Interior Package Pricing</h6>
+        </div>
         <div class="card-body">
             <table class="table table-bordered align-middle mb-3">
                 <thead class="bg-light">
-                    <tr><th>Package</th><th class="text-end">Amount</th><th class="text-center">Select</th></tr>
+                    <tr>
+                        <th>Package</th>
+                        <th class="text-end">Amount</th>
+                        <th class="text-center">Select</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>LAMINATED (BASIC-ECO)</strong></td>
                         <td class="text-end">
-                            <input type="number" min="0" step="0.01" id="basicAmountInput" class="form-control form-control-sm text-end" value="0.00">
+                            <input type="number" min="0" step="0.01" id="basicAmountInput"
+                                class="form-control form-control-sm text-end" value="0.00">
                         </td>
                         <td class="text-center"><input type="radio" name="package_selector" value="BASIC" checked></td>
                     </tr>
-                    <tr><td><strong>DUCO/VENEER/LAMINATE (Semi-Luxury Interior)</strong></td><td class="text-end fw-bold" id="semiAmountView">0.00</td><td class="text-center"><input type="radio" name="package_selector" value="SEMI"></td></tr>
-                    <tr><td><strong>PU-DUCO/VENEER/ACRYLIC/H.LAM (Full-Luxury Interior)</strong></td><td class="text-end fw-bold" id="fullAmountView">0.00</td><td class="text-center"><input type="radio" name="package_selector" value="FULL"></td></tr>
+                    <tr>
+                        <td><strong>DUCO/VENEER/LAMINATE (Semi-Luxury Interior)</strong></td>
+                        <td class="text-end fw-bold" id="semiAmountView">0.00</td>
+                        <td class="text-center"><input type="radio" name="package_selector" value="SEMI"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>PU-DUCO/VENEER/ACRYLIC/H.LAM (Full-Luxury Interior)</strong></td>
+                        <td class="text-end fw-bold" id="fullAmountView">0.00</td>
+                        <td class="text-center"><input type="radio" name="package_selector" value="FULL"></td>
+                    </tr>
                 </tbody>
             </table>
             <div class="text-end">
@@ -119,7 +98,8 @@
 
     <div class="d-flex gap-2 mb-4">
         <button class="btn btn-secondary" type="submit" name="action" value="save_draft">Save Draft</button>
-        <button class="btn btn-primary" type="submit" name="action" value="submit_for_approval">Send for Approval</button>
+        <button class="btn btn-primary" type="submit" name="action" value="submit_for_approval">Send for
+            Approval</button>
         <button class="btn btn-outline-success" type="submit" name="action" value="generate_pdf">Generate PDF</button>
     </div>
 </form>
@@ -127,60 +107,60 @@
 
 {% block extra_js %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const sectionsContainer = document.getElementById('sectionsContainer');
-    const defaultSections = ['Foyer','Living Area','Kitchen','Bedroom 1','Civil Work','Material List','Mynest Includings'];
-    const basicAmountInput = document.getElementById('basicAmountInput');
-    const semiAmountView = document.getElementById('semiAmountView');
-    const fullAmountView = document.getElementById('fullAmountView');
-    const selectedPackageAmountView = document.getElementById('selectedPackageAmountView');
-    const hiddenSelectedPackage = document.getElementById('id_selected_package');
-    const hiddenBaseAmount = document.getElementById('id_base_amount');
-    const hiddenPackageAmount = document.getElementById('id_package_amount');
-    const packageSelectorInputs = document.querySelectorAll('input[name="package_selector"]');
-    let basicAmountManual = false;
+    document.addEventListener('DOMContentLoaded', function () {
+        const sectionsContainer = document.getElementById('sectionsContainer');
+        const defaultSections = ['Foyer', 'Living Area', 'Kitchen', 'Bedroom 1'];
+        const basicAmountInput = document.getElementById('basicAmountInput');
+        const semiAmountView = document.getElementById('semiAmountView');
+        const fullAmountView = document.getElementById('fullAmountView');
+        const selectedPackageAmountView = document.getElementById('selectedPackageAmountView');
+        const hiddenSelectedPackage = document.getElementById('id_selected_package');
+        const hiddenBaseAmount = document.getElementById('id_base_amount');
+        const hiddenPackageAmount = document.getElementById('id_package_amount');
+        const packageSelectorInputs = document.querySelectorAll('input[name="package_selector"]');
+        let basicAmountManual = false;
 
-    const sectionItemCatalog = {
-        'foyer': ['Safty Door (Jaali Door)','Wall Panelling on Around Safty Door','Shoe Cabinet','Existing Door Lamination with selected finish','Electrical Points for Decorave lights'],
-        'living area': ['Tv mount panelling','Base cabinate','Wall bookshlave or storage','Console Unit','Console Wall Panelling','Frame Arch Jacketing','Pooja Unit','Partition','3d Wall Panelling With Punning','Italian Texture & Wallpaper on Wallpanelling','Curtains and Blinds','Air conditioner and Curtain Panel','Centre Table','Sofa','Lounger Sofa','Puffy Sofa 2 nos','Electrical Points for Decorave lights','False Ceilling','Panel and COB lights','Profile and Rope Light'],
-        'kitchen': ['Floor Cabinet','Tendum Cabinet','Bottle Pullout','Cutlery tray','Thali Stands','Wall Cabinet','Profile Shutters','Loft (Maliya)','Breakfast Counter','Utility Floor Covering Shutters','Utility Wall Cabinet','Crockery Floor Cabinet','Crockery Wall Cabinet','Crockery Wall Dado panel','Dining Table','Italian Texture & Wallpaper on Wallpanelling','Electrical Points for Decorave lights','False Ceilling','Panel and COB lights','Profile and Rope Light'],
-        'bedroom': ['Bed With Hydrolic storage','Cushioned Headboard','Mattress 6"','Bedside Table','Air conditioner and Curtain Panel','Armoire (Wardrobe)','Loft (Maliya)','3d Wall Panelling With Punning','Italian Texture & Wallpaper on Wallpanelling','Dressing Mirror','Dressing Storage','Study Table','Study Table Storage (Bookshalves)','Chest Of Drawers','Existing Door Lamination with selected finish','Washroom Vanity Unit','Washroom Wall Base Mirror','Curtains and Blinds','False Ceilling','Panel and COB lights','Profile and Rope Light','Additional Plugs for side table and study table','Electrical Points for Decorave lights','Puffy Sofa','Bay Window Sitting'],
-        'civil work': ['MCB Board Replacement','Inverter Wiring Extension','New Plug Points','Wall Shifting','Aluminium Ventilation Windows','Utility Renovation','Door Frame Replacement','Basin Vanity Area','Full House Tile Replacement'],
-        'mynest includings': ['Space management','3D (360) Designing','2 Layers Executipn','Labour Handling','Debris Cleaning','Basic Deep Cleaining','Floor Cover','2 years of Service Warranty'],
-        'material list': ['Paint Work - Asian Paint - Royal','Plywood - BWR and BWP (Kitchen & washroom base) - 14 years','Laminate - 2K','Veneer - 3K','Acrylic - 5K','Hardware - Hindges - HIKO/Hattich/Godrej/E-Square','Hardware - Locks - Godrej - 2 years','Hardware - Drawer Channels - HIKO/Hattich/Godrej/E-Square','Hardware - Tendum - HIKO/Hattich/Godrej/E-Square','Knobs/Handles - 150/500rs','Fabric - 300-500rs','False Ceiling - Gypsum - 10 years','Lights - Panel and COB - Syska/Astro - 2 years','Wires - RR/Finolex - 14 years']
-    };
+        const sectionItemCatalog = {
+            'foyer': ['Safty Door (Jaali Door)', 'Wall Panelling on Around Safty Door', 'Shoe Cabinet', 'Existing Door Lamination with selected finish', 'Electrical Points for Decorave lights'],
+            'living area': ['Tv mount panelling', 'Base cabinate', 'Wall bookshlave or storage', 'Console Unit', 'Console Wall Panelling', 'Frame Arch Jacketing', 'Pooja Unit', 'Partition', '3d Wall Panelling With Punning', 'Italian Texture & Wallpaper on Wallpanelling', 'Curtains and Blinds', 'Air conditioner and Curtain Panel', 'Centre Table', 'Sofa', 'Lounger Sofa', 'Puffy Sofa 2 nos', 'Electrical Points for Decorave lights', 'False Ceilling', 'Panel and COB lights', 'Profile and Rope Light'],
+            'kitchen': ['Floor Cabinet', 'Tendum Cabinet', 'Bottle Pullout', 'Cutlery tray', 'Thali Stands', 'Wall Cabinet', 'Profile Shutters', 'Loft (Maliya)', 'Breakfast Counter', 'Utility Floor Covering Shutters', 'Utility Wall Cabinet', 'Crockery Floor Cabinet', 'Crockery Wall Cabinet', 'Crockery Wall Dado panel', 'Dining Table', 'Italian Texture & Wallpaper on Wallpanelling', 'Electrical Points for Decorave lights', 'False Ceilling', 'Panel and COB lights', 'Profile and Rope Light'],
+            'bedroom': ['Bed With Hydrolic storage', 'Cushioned Headboard', 'Mattress 6"', 'Bedside Table', 'Air conditioner and Curtain Panel', 'Armoire (Wardrobe)', 'Loft (Maliya)', '3d Wall Panelling With Punning', 'Italian Texture & Wallpaper on Wallpanelling', 'Dressing Mirror', 'Dressing Storage', 'Study Table', 'Study Table Storage (Bookshalves)', 'Chest Of Drawers', 'Existing Door Lamination with selected finish', 'Washroom Vanity Unit', 'Washroom Wall Base Mirror', 'Curtains and Blinds', 'False Ceilling', 'Panel and COB lights', 'Profile and Rope Light', 'Additional Plugs for side table and study table', 'Electrical Points for Decorave lights', 'Puffy Sofa', 'Bay Window Sitting'],
+            'civil work': ['MCB Board Replacement', 'Inverter Wiring Extension', 'New Plug Points', 'Wall Shifting', 'Aluminium Ventilation Windows', 'Utility Renovation', 'Door Frame Replacement', 'Basin Vanity Area', 'Full House Tile Replacement'],
+            'mynest includings': ['Space management', '3D (360) Designing', '2 Layers Executipn', 'Labour Handling', 'Debris Cleaning', 'Basic Deep Cleaining', 'Floor Cover', '2 years of Service Warranty'],
+            'material list': ['Paint Work - Asian Paint - Royal', 'Plywood - BWR and BWP (Kitchen & washroom base) - 14 years', 'Laminate - 2K', 'Veneer - 3K', 'Acrylic - 5K', 'Hardware - Hindges - HIKO/Hattich/Godrej/E-Square', 'Hardware - Locks - Godrej - 2 years', 'Hardware - Drawer Channels - HIKO/Hattich/Godrej/E-Square', 'Hardware - Tendum - HIKO/Hattich/Godrej/E-Square', 'Knobs/Handles - 150/500rs', 'Fabric - 300-500rs', 'False Ceiling - Gypsum - 10 years', 'Lights - Panel and COB - Syska/Astro - 2 years', 'Wires - RR/Finolex - 14 years']
+        };
 
-    function sectionOptions(sectionName) {
-        const key = (sectionName || '').toLowerCase().trim();
-        if (key.startsWith('bedroom')) return sectionItemCatalog['bedroom'];
-        return sectionItemCatalog[key] || [];
-    }
-    function optionsMarkup(items) {
-        return ['<option value="">Select Item</option>','<option value="__OTHER__">Other (Custom Item)</option>',...items.map((item)=>`<option value="${item}">${item}</option>`)].join('');
-    }
-    function updateSectionItemOptions(wrap) {
-        const sectionName = wrap.querySelector('input[name="section_name[]"]').value;
-        const items = sectionOptions(sectionName);
-        wrap.querySelectorAll('.item-template-select').forEach((select)=> {
-            const currentValue = select.value;
-            select.innerHTML = optionsMarkup(items);
-            if (currentValue && items.includes(currentValue)) select.value = currentValue;
-        });
-    }
-    function toggleBedroomButton(wrap) {
-        const sectionName = wrap.querySelector('input[name="section_name[]"]').value.toLowerCase();
-        const bedBtn = wrap.querySelector('.add-bedroom-inside');
-        if (sectionName.startsWith('bedroom')) bedBtn.classList.remove('d-none'); else bedBtn.classList.add('d-none');
-    }
-    function addNextBedroom() {
-        const bedroomCount = Array.from(document.querySelectorAll('input[name="section_name[]"]')).filter((input)=>input.value.toLowerCase().startsWith('bedroom')).length;
-        addSection(`Bedroom ${bedroomCount + 1}`);
-    }
-    function addSection(name='Section') {
-        const idx = document.querySelectorAll('.section-block').length;
-        const wrap = document.createElement('div');
-        wrap.className = 'section-block border rounded p-3 mb-3';
-        wrap.innerHTML = `
+        function sectionOptions(sectionName) {
+            const key = (sectionName || '').toLowerCase().trim();
+            if (key.startsWith('bedroom')) return sectionItemCatalog['bedroom'];
+            return sectionItemCatalog[key] || [];
+        }
+        function optionsMarkup(items) {
+            return ['<option value="">Select Item</option>', '<option value="__OTHER__">Other (Custom Item)</option>', ...items.map((item) => `<option value="${item}">${item}</option>`)].join('');
+        }
+        function updateSectionItemOptions(wrap) {
+            const sectionName = wrap.querySelector('input[name="section_name[]"]').value;
+            const items = sectionOptions(sectionName);
+            wrap.querySelectorAll('.item-template-select').forEach((select) => {
+                const currentValue = select.value;
+                select.innerHTML = optionsMarkup(items);
+                if (currentValue && items.includes(currentValue)) select.value = currentValue;
+            });
+        }
+        function toggleBedroomButton(wrap) {
+            const sectionName = wrap.querySelector('input[name="section_name[]"]').value.toLowerCase();
+            const bedBtn = wrap.querySelector('.add-bedroom-inside');
+            if (sectionName.startsWith('bedroom')) bedBtn.classList.remove('d-none'); else bedBtn.classList.add('d-none');
+        }
+        function addNextBedroom(afterElement = null) {
+            const bedroomCount = Array.from(document.querySelectorAll('input[name="section_name[]"]')).filter((input) => input.value.toLowerCase().startsWith('bedroom')).length;
+            addSection(`Bedroom ${bedroomCount + 1}`, afterElement);
+        }
+        function addSection(name = 'Section', afterElement = null) {
+            const idx = document.querySelectorAll('.section-block').length;
+            const wrap = document.createElement('div');
+            wrap.className = 'section-block border rounded p-3 mb-3';
+            wrap.innerHTML = `
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <input name="section_name[]" class="form-control form-control-sm w-50" value="${name}">
                 <div class="d-flex gap-2">
@@ -189,86 +169,102 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <table class="table table-sm table-bordered mb-0">
-                <thead><tr><th>#</th><th>Item</th><th>Description</th><th>Qty</th><th>Unit</th><th>Total</th><th>Remarks</th><th></th></tr></thead>
+                <thead><tr><th>No.</th><th>Item</th><th>Description</th><th>Remarks</th><th></th></tr></thead>
                 <tbody class="item-body"></tbody>
             </table>`;
-        sectionsContainer.appendChild(wrap);
-        addItem(wrap.querySelector('.item-body'), idx);
-        wrap.querySelector('.add-item').addEventListener('click', ()=>addItem(wrap.querySelector('.item-body'), idx));
-        wrap.querySelector('.add-bedroom-inside').addEventListener('click', ()=>addNextBedroom());
-        wrap.querySelector('input[name="section_name[]"]').addEventListener('input', ()=>{ updateSectionItemOptions(wrap); toggleBedroomButton(wrap); });
-        toggleBedroomButton(wrap);
-        updateSectionItemOptions(wrap);
-    }
-    function addItem(body, idx) {
-        const sectionWrap = body.closest('.section-block');
-        const sectionName = sectionWrap.querySelector('input[name="section_name[]"]').value;
-        const selectOptions = optionsMarkup(sectionOptions(sectionName));
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><input name="item_number_${idx}[]" class="form-control form-control-sm" value="${body.children.length+1}"></td>
+
+            if (afterElement && afterElement.nextSibling) {
+                sectionsContainer.insertBefore(wrap, afterElement.nextSibling);
+            } else if (afterElement) {
+                sectionsContainer.appendChild(wrap);
+            } else {
+                sectionsContainer.appendChild(wrap);
+            }
+
+            addItem(wrap.querySelector('.item-body'), idx);
+            wrap.querySelector('.add-item').addEventListener('click', () => addItem(wrap.querySelector('.item-body'), idx));
+            wrap.querySelector('.add-bedroom-inside').addEventListener('click', () => addNextBedroom(wrap));
+            wrap.querySelector('input[name="section_name[]"]').addEventListener('input', () => { updateSectionItemOptions(wrap); toggleBedroomButton(wrap); });
+            toggleBedroomButton(wrap);
+            updateSectionItemOptions(wrap);
+        }
+        function addItem(body, idx) {
+            const sectionWrap = body.closest('.section-block');
+            const sectionName = sectionWrap.querySelector('input[name="section_name[]"]').value;
+            const selectOptions = optionsMarkup(sectionOptions(sectionName));
+            const row = document.createElement('tr');
+            row.innerHTML = `
+            <td><input name="item_number_${idx}[]" class="form-control form-control-sm" value="${body.children.length + 1}"></td>
             <td><select class="form-select form-select-sm item-template-select">${selectOptions}</select></td>
             <td><input name="description_${idx}[]" class="form-control form-control-sm"></td>
-            <td><input name="quantity_${idx}[]" class="form-control form-control-sm qty" value="1"></td>
-            <td><input name="unit_price_${idx}[]" class="form-control form-control-sm unit" value="0"></td>
-            <td><input class="form-control form-control-sm total" readonly></td>
             <td><input name="remarks_${idx}[]" class="form-control form-control-sm"></td>
             <td><button type="button" class="btn btn-sm btn-link text-danger del">x</button></td>`;
-        body.appendChild(row);
-        row.querySelector('.del').addEventListener('click', ()=>{ row.remove(); updatePackagePricing(); });
-        row.querySelector('.item-template-select').addEventListener('change', function() {
-            const desc = row.querySelector(`input[name="description_${idx}[]"]`);
-            if (this.value === '__OTHER__') { desc.value = ''; desc.focus(); }
-            else if (this.value) { desc.value = this.value; }
-        });
-        const recalc = ()=>{ row.querySelector('.total').value = ((parseFloat(row.querySelector('.qty').value)||0)*(parseFloat(row.querySelector('.unit').value)||0)).toFixed(2); updatePackagePricing(); };
-        row.querySelector('.qty').addEventListener('input', recalc);
-        row.querySelector('.unit').addEventListener('input', recalc);
-        recalc();
-    }
+            body.appendChild(row);
+            row.querySelector('.del').addEventListener('click', () => { row.remove(); });
+            row.querySelector('.item-template-select').addEventListener('change', function () {
+                const desc = row.querySelector(`input[name="description_${idx}[]"]`);
+                if (this.value === '__OTHER__') {
+                    // Convert select to text input for custom item name
+                    const td = this.parentElement;
+                    const input = document.createElement('input');
+                    input.className = 'form-control form-control-sm';
+                    input.name = `item_name_${idx}[]`;
+                    input.placeholder = "Enter Item Name";
+                    td.innerHTML = '';
+                    td.appendChild(input);
+                    input.focus();
+                    desc.value = '';
 
-    function selectedPackageCode() {
-        const checked = document.querySelector('input[name="package_selector"]:checked');
-        return checked ? checked.value : 'BASIC';
-    }
-    function calculateBaseAmount() {
-        let base = 0;
-        document.querySelectorAll('.total').forEach((input)=>{ base += parseFloat(input.value) || 0; });
-        return base;
-    }
-    function updatePackagePricing() {
-        const autoBase = calculateBaseAmount();
-        if (!basicAmountManual) {
-            basicAmountInput.value = autoBase.toFixed(2);
+                    // ONLY add a new row automatically when 'Other' is selected and it's the last row
+                    if (body.lastElementChild === row) {
+                        addItem(body, idx);
+                    }
+                } else if (this.value) {
+                    desc.value = this.value;
+                }
+            });
         }
-        const base = parseFloat(basicAmountInput.value) || 0;
-        const semi = base + (base * 0.27);
-        const full = base + (base * 0.54);
-        semiAmountView.textContent = semi.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2});
-        fullAmountView.textContent = full.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2});
-        const code = selectedPackageCode();
-        let selectedAmount = base;
-        if (code === 'SEMI') selectedAmount = semi;
-        if (code === 'FULL') selectedAmount = full;
-        selectedPackageAmountView.textContent = selectedAmount.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2});
-        hiddenSelectedPackage.value = code;
-        hiddenBaseAmount.value = base.toFixed(2);
-        hiddenPackageAmount.value = selectedAmount.toFixed(2);
-    }
 
-    defaultSections.forEach(addSection);
-    document.getElementById('addSectionBtn').addEventListener('click', ()=>addSection('Custom Section'));
-    document.getElementById('addBedroomBtn').addEventListener('click', addNextBedroom);
-    packageSelectorInputs.forEach((input)=>input.addEventListener('change', updatePackagePricing));
-    basicAmountInput.addEventListener('input', () => {
-        basicAmountManual = true;
+        function selectedPackageCode() {
+            const checked = document.querySelector('input[name="package_selector"]:checked');
+            return checked ? checked.value : 'BASIC';
+        }
+        function updatePackagePricing() {
+            const base = parseFloat(basicAmountInput.value) || 0;
+            const semi = base + (base * 0.27);
+            const full = base + (base * 0.54);
+            semiAmountView.textContent = semi.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            fullAmountView.textContent = full.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const code = selectedPackageCode();
+            let selectedAmount = base;
+            if (code === 'SEMI') selectedAmount = semi;
+            if (code === 'FULL') selectedAmount = full;
+            selectedPackageAmountView.textContent = selectedAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            hiddenSelectedPackage.value = code;
+            hiddenBaseAmount.value = base.toFixed(2);
+            hiddenPackageAmount.value = selectedAmount.toFixed(2);
+        }
+
+        defaultSections.forEach(addSection);
+        document.getElementById('addSectionBtn').addEventListener('click', () => addSection('Custom Section'));
+        document.getElementById('addBedroomBtn').addEventListener('click', addNextBedroom);
+        packageSelectorInputs.forEach((input) => input.addEventListener('change', updatePackagePricing));
+        basicAmountInput.addEventListener('input', () => {
+            basicAmountManual = true;
+            updatePackagePricing();
+        });
+        basicAmountInput.addEventListener('blur', () => {
+            const value = parseFloat(basicAmountInput.value) || 0;
+            basicAmountInput.value = value.toFixed(2);
+        });
         updatePackagePricing();
+
+        const notesField = document.querySelector('textarea[name="notes"]');
+        if (notesField) {
+            notesField.placeholder = "Enter additional project notes, special conditions, or client-specific terms here...";
+            notesField.className += " form-control";
+            notesField.rows = 4;
+        }
     });
-    basicAmountInput.addEventListener('blur', () => {
-        const value = parseFloat(basicAmountInput.value) || 0;
-        basicAmountInput.value = value.toFixed(2);
-    });
-    updatePackagePricing();
-});
 </script>
 {% endblock %}
